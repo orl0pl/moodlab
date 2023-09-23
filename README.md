@@ -97,7 +97,7 @@ to [ios/Runner/Info.plist](./ios/Runner/Info.plist) and remove the following cod
 <key>CFBundleLocalizations</key>
 <array>
 	<string>en</string>
-   	<string>de</string>
+   	<string>pl</string>
 </array>
 ```
 

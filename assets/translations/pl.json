@@ -1,0 +1,11 @@
+{
+  "app_name": "MoodLab",
+
+  "bottom_nav_first": "Strona główna",
+  "bottom_nav_second": "Anazliza",
+
+  "today": "dzisiaj, {}",
+  "yesterday": "jutro, {}"
+
+
+}

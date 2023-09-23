@@ -34,11 +34,14 @@ dependencies:
   hive: ^2.2.3
   url_launcher: ^6.1.7
   ionicons: ^0.2.2
+  material_design_icons_flutter: ^7.0.7296
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -46,25 +49,22 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
 
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
-  uses-material-design: false
+  uses-material-design: true
 
   assets:
     - assets/translations/
 
-  fonts:
-    - family: Nunito
-      fonts:
-        - asset: assets/fonts/Nunito-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Nunito-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Nunito-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Nunito-Light.ttf
-          weight: 300
+  # fonts:
+  #   - family: Nunito
+  #     fonts:
+  #       - asset: assets/fonts/Nunito-Bold.ttf
+  #         weight: 700
+  #       - asset: assets/fonts/Nunito-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/Nunito-Regular.ttf
+  #         weight: 400
+  #       - asset: assets/fonts/Nunito-Light.ttf
+  #         weight: 300
 
   # To add assets to your application, add an assets section, like this:
   # assets:

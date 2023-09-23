@@ -32,7 +32,7 @@ void main() async {
       path: 'assets/translations',
       supportedLocales: const <Locale>[
         Locale('en'),
-        Locale('de'),
+        Locale('pl'),
       ],
       fallbackLocale: const Locale('en'),
       useFallbackTranslations: true,
@@ -63,7 +63,6 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            debugShowCheckedModeBanner: false,
             home: const SkeletonScreen(),
           );
         },
