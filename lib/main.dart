@@ -10,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'config/theme.dart';
 import 'cubit/theme_cubit.dart';
+import 'ui/screens/settings_screen.dart';
 import 'ui/screens/skeleton_screen.dart';
 
 /// Try using const constructors as much as possible!
@@ -63,7 +64,16 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            home: const SkeletonScreen(),
+            //home: const SkeletonScreen(),
+            initialRoute: 'skeleton_screen',
+            // ignore: prefer_const_literals_to_create_immutables
+            routes: <String, WidgetBuilder>{
+              // ignore: prefer_const_constructors
+              'settings': (BuildContext context)=>SettingsScreen(),
+              // ignore: prefer_const_constructors
+              'skeleton_screen': (BuildContext context)=>SkeletonScreen()
+            },
+            
           );
         },
       ),

@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+
+
 class FirstScreen extends StatelessWidget {
   const FirstScreen({super.key});
 
@@ -47,7 +49,8 @@ class FirstScreen extends StatelessWidget {
                         EntryCard(
                           textTheme: textTheme,
                           onTap: () => <void>{debugPrint('Tapped $i')},
-                          time: formatDate(DateTime.now().subtract(const Duration(hours: 16))),
+                          time: formatDate(DateTime.now()
+                              .subtract(const Duration(hours: 16))),
                           title: '$i Sus Day',
                           body: "This $i's day was very sus",
                         )
@@ -62,11 +65,12 @@ String formatDate(DateTime date) {
   final DateFormat hMformatter = DateFormat('H:MM');
   final DateFormat formatter = DateFormat('d MMMM');
   final DateFormat yFormatter = DateFormat('d MMMM, y');
-  
+
   if (date.year == now.year) {
     if (date.month == now.month && date.day == now.day) {
       return tr('today', args: <String>[hMformatter.format(date)]);
-    } else if (date.isBefore(now) && date.isAfter(now.subtract(const Duration(days: 1)))) {
+    } else if (date.isBefore(now) &&
+        date.isAfter(now.subtract(const Duration(days: 1)))) {
       return tr('yesterday', args: <String>[hMformatter.format(date)]);
     } else {
       return formatter.format(date);
@@ -75,8 +79,6 @@ String formatDate(DateTime date) {
     return yFormatter.format(date);
   }
 }
-
-
 
 class EntryCard extends StatelessWidget {
   const EntryCard(
@@ -90,8 +92,6 @@ class EntryCard extends StatelessWidget {
   final TextTheme textTheme;
   final GestureTapCallback onTap;
   final String time, title, body;
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -149,10 +149,14 @@ class IconWithLabel extends StatelessWidget {
 
 class GreetingsHeader extends StatelessWidget {
   const GreetingsHeader(
-      {super.key, required this.textTheme, required this.name});
+      {super.key,
+      required this.textTheme,
+      required this.name,
+      });
 
   final TextTheme textTheme;
   final String name;
+
 
   @override
   Widget build(BuildContext context) {
@@ -160,9 +164,11 @@ class GreetingsHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text('Hi $name!', style: textTheme.headlineLarge),
+        
         IconButton.filledTonal(
-            // ignore: always_specify_types
-            onPressed: /* TODO: User settings */ () => {},
+            onPressed: () =>{
+              Navigator.pushNamed(context, 'settings')
+                },
             icon: const Icon(Icons.account_circle_outlined))
       ],
     );

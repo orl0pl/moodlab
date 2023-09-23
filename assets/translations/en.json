@@ -5,5 +5,11 @@
   "bottom_nav_second": "Analitics",
 
   "today": "today, {}",
-  "yesterday": "yesterday, {}"
+  "yesterday": "yesterday, {}",
+
+  "greetings": "Hi {}!",
+
+  "analitics_summary": "Analitics Summary",
+  "emotion_trend": "Emotion Trend"
+  
 }
