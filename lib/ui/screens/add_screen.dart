@@ -7,10 +7,16 @@ class SliderWithLabel extends StatefulWidget {
     required this.label,
     required this.value,
     required this.onChanged,
+    required this.badIcon,
+    required this.badLabel,
+    required this.goodIcon,
+    required this.goodLabel
   });
   final String label;
   final double value;
   final ValueChanged<double> onChanged;
+  final IconData badIcon, goodIcon;
+  final String badLabel, goodLabel;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -27,47 +33,47 @@ class _SliderWithLabelState extends State<SliderWithLabel> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(left: 12.0),
+          padding: const EdgeInsets.only(left: 24.0),
           child: Text(widget.label, style: textTheme.labelLarge),
         ),
         Slider(
           value: widget.value,
           min: 1,
           max: 5,
-          divisions: 5,
+          divisions: 4,
           onChanged: widget.onChanged,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal:12.0),
+          padding: const EdgeInsets.symmetric(horizontal:24.0),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Row(
                 children: <Widget>[
                   Icon(
-                    MdiIcons.emoticonSadOutline,
+                    widget.badIcon,
                     size: 16,
                   ),
                   const SizedBox(
                     width: 4,
                   ),
                   Text(
-                    'Label Bad',
+                    widget.badLabel,
                     style: textTheme.labelMedium,
                   )
                 ],
               ),
-              const Spacer(),
               Row(
                 children: <Widget>[
                   Icon(
-                    MdiIcons.emoticonHappyOutline,
+                    widget.goodIcon,
                     size: 16,
                   ),
                   const SizedBox(
                     width: 4,
                   ),
                   Text(
-                    'Label Good',
+                    widget.goodLabel,
                     style: textTheme.labelMedium,
                   )
                 ],
@@ -81,7 +87,7 @@ class _SliderWithLabelState extends State<SliderWithLabel> {
 }
 
 class AddEntryScreen extends StatefulWidget {
-  const AddEntryScreen({Key? key}) : super(key: key);
+  const AddEntryScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -121,6 +127,10 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                       moodValue = newValue;
                     });
                   },
+                  badIcon: MdiIcons.emoticonSadOutline,
+                  badLabel: 'Terrible',
+                  goodIcon: MdiIcons.emoticonHappyOutline,
+                  goodLabel: 'Fantastic',
                 ),
               ],
             ),
