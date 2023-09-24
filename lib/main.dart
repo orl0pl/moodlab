@@ -10,7 +10,9 @@ import 'package:path_provider/path_provider.dart';
 
 import 'config/theme.dart';
 import 'cubit/theme_cubit.dart';
+import 'managers/language_manager.dart';
 import 'ui/screens/add_screen.dart';
+import 'ui/screens/language_screen.dart';
 import 'ui/screens/name_screen.dart';
 import 'ui/screens/settings_screen.dart';
 import 'ui/screens/skeleton_screen.dart';
@@ -31,6 +33,8 @@ void main() async {
     storageDirectory: tmpDir,
   );
 
+  final dynamic savedLanguage = await LanguageManager.getLanguage();
+
   runApp(
     EasyLocalization(
       path: 'assets/translations',
@@ -40,6 +44,7 @@ void main() async {
       ],
       fallbackLocale: const Locale('en'),
       useFallbackTranslations: true,
+      startLocale: savedLanguage != null ? Locale(savedLanguage.toString()) : null,
       child: const MyApp(),
     ),
   );
@@ -67,6 +72,7 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
+            
             //home: const SkeletonScreen(),
             initialRoute: 'skeleton_screen',
             // ignore: prefer_const_literals_to_create_immutables
@@ -76,7 +82,8 @@ class MyApp extends StatelessWidget {
               // ignore: prefer_const_constructors
               'skeleton_screen': (BuildContext context)=>SkeletonScreen(),
               'name_screen': (BuildContext context)=>const NameScreen(),
-              'add_screen': (BuildContext context)=>const AddEntryScreen()
+              'add_screen': (BuildContext context)=>const AddEntryScreen(),
+              'language_screen':(BuildContext context) => const LanguageSelectionScreen()
             },
             
           );

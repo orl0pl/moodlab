@@ -59,7 +59,7 @@ class FirstScreen extends StatelessWidget {
             IconWithLabel(
               textTheme: textTheme,
               icon: MdiIcons.creationOutline,
-              label: 'Analytics Summary',
+              label: tr('analitics_summary'),
             ),
             const SizedBox(height: 16),
             EmotionTrendsSummary(textTheme: textTheme),
@@ -67,7 +67,7 @@ class FirstScreen extends StatelessWidget {
             IconWithLabel(
               textTheme: textTheme,
               icon: MdiIcons.history,
-              label: 'Recent Entries',
+              label: tr('recent_entries'),
             ),
             const SizedBox(height: 16),
             Column(
@@ -228,7 +228,7 @@ class EmotionTrendsSummary extends StatelessWidget {
               const Icon(Icons.trending_up),
               const SizedBox(width: 8),
               Text(
-                'Emotion Trend',
+                tr('emotion_trend'),
                 style: Theme.of(context)
                     .textTheme
                     .apply(

@@ -10,6 +10,64 @@
   "greetings": "Hi {}!",
 
   "analitics_summary": "Analitics Summary",
-  "emotion_trend": "Emotion Trend"
+  "emotion_trend": "Emotion Trend",
+
+  "recent_entries": "Recent Entries",
+
+  "mood": "Mood",
+  "energy": "Energy",
+  "stress": "Stress",
+  "productivity": "Productivity",
+  "gratefulness": "Gratefulness",
+  "anxiouness": "Anxiouness",
+  "sleepQuality": "Sleep Quality",
+  "sportActivity": "Sport Activity",
+
+  "language_screen":{
+    "title": "Change Language"
+  },
   
+  "sliders": {
+    "mood": {
+      "question": "How would you rate your overall mood?",
+      "minLabel": "Awful",
+      "maxLabel": "Fantastic"
+    },
+    "energy": {
+      "question": "How much energy do you have right now?",
+      "minLabel": "Low",
+      "maxLabel": "High"
+    },
+    "stress": {
+      "question": "Do you feel stressed?",
+      "minLabel": "No",
+      "maxLabel": "Very"
+    },
+    "productivity": {
+      "question": "How productive have you been recently?",
+      "minLabel": "Not Very Productive",
+      "maxLabel": "Very Productive"
+    },
+    "gratefulness": {
+      "question": "What is the level of your gratitude?",
+      "minLabel": "Ungrateful",
+      "maxLabel": "Very Grateful"
+    },
+    "anxiousness": {
+      "question": "Do you feel anxious right now?",
+      "minLabel": "Calm",
+      "maxLabel": "Very Anxious"
+    },
+    "sleepQuality": {
+      "question": "How would you rate the quality of your recent sleep?",
+      "minLabel": "Poor",
+      "maxLabel": "Excellent"
+    },
+    "sportActivity": {
+      "question": "How physically active have you been recently?",
+      "minLabel": "Not Very Active",
+      "maxLabel": "Very Active"
+    }
+  }
+
 }

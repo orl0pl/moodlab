@@ -38,6 +38,11 @@ class SettingsScreen extends StatelessWidget {
                     subtitle: const Text('Change name'),
                     onTap: ()=><Future<Object?>>{Navigator.pushNamed(context, 'name_screen')},
                     leading: const Icon(Icons.account_circle)),
+                ListTile(
+                    title: const Text('Language'),
+                    subtitle: const Text('Change language'),
+                    onTap: ()=><Future<Object?>>{Navigator.pushNamed(context, 'language_screen')},
+                    leading: const Icon(Icons.language)),
                 const SizedBox(
                   height: 4,
                 ),

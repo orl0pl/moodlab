@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -120,7 +121,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SliderWithLabel(
-                  label: 'Mood',
+                  label: tr('sliders.mood.question'),
                   value: moodValue,
                   onChanged: (double newValue) {
                     setState(() {
@@ -128,9 +129,9 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                     });
                   },
                   badIcon: MdiIcons.emoticonSadOutline,
-                  badLabel: 'Terrible',
+                  badLabel: tr('sliders.mood.minLabel'),
                   goodIcon: MdiIcons.emoticonHappyOutline,
-                  goodLabel: 'Fantastic',
+                  goodLabel: tr('sliders.mood.maxLabel'),
                 ),
               ],
             ),

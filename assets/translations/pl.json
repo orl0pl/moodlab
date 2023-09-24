@@ -5,7 +5,69 @@
   "bottom_nav_second": "Anazliza",
 
   "today": "dzisiaj, {}",
-  "yesterday": "jutro, {}"
+  "yesterday": "wczoraj, {}",
 
 
+  "analitics_summary": "Podsumowanie Analizy",
+  "emotion_trend": "Trend Emocjonalny",
+
+  "recent_entries": "Ostatnie Wpisy",
+
+  "mood": "Samopoczucie",
+  "energy": "Energia",
+  "stress": "Stres",
+  "productivity": "Produktywność",
+  "gratefulness": "Wdzięczność",
+  "anxiouness": "Zaniepokojenie",
+  "sleepQuality": "Jakość snu",
+  "sportActivity": "Aktywność sportowa",
+
+  "language_screen":{
+    "title": "Zmień język"
+  },
+
+  "sliders": {
+    "mood": {
+      "question": "Jak oceniasz swój ogólny nastrój?",
+      "minLabel": "Okropny",
+      "maxLabel": "Fantasytczny"
+    },
+    "energy": {
+      "question": "Ile masz obecnie energii?",
+      "minLabel": "Mało",
+      "maxLabel": "Dużo"
+    },
+    "stress": {
+      "question": "Czy czujesz się zestresowany/-a?",
+      "minLabel": "Nie",
+      "maxLabel": "Bardzo"
+    },
+    "productivity": {
+      "question": "Jak produktywny/-na byłeś/-aś ostatnio?",
+      "minLabel": "Mało produktywny/-na",
+      "maxLabel": "Bardzo produktywny/-na"
+    },
+    "gratefulness": {
+      "question": "Na jakim poziomie jest Twoja wdzięczność?",
+      "minLabel": "Niewdzięczny/-a",
+      "maxLabel": "Bardzo wdzięczny/-a"
+    },
+    "anxiousness": {
+      "question": "Czy czujesz się teraz zaniepokojony/-a?",
+      "minLabel": "Spokojny/-a",
+      "maxLabel": "Bardzo zaniepokojony/-a"
+    },
+    "sleepQuality": {
+      "question": "Jak oceniasz jakość swojego ostatniego snu?",
+      "minLabel": "Słaba",
+      "maxLabel": "Doskonała"
+    },
+    "sportActivity": {
+      "question": "Jak aktywny/-a byłeś/-aś fizycznie ostatnio?",
+      "minLabel": "Mało aktywny/-a",
+      "maxLabel": "Bardzo aktywny/-a"
+    }
+  }
+
+  
 }
