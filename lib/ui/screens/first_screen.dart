@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../../boxes/user_box.dart';
+
 
 
 class FirstScreen extends StatelessWidget {
@@ -12,53 +14,82 @@ class FirstScreen extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context)
         .textTheme
         .apply(displayColor: Theme.of(context).colorScheme.onSurface);
+
+    // Use the UserBox class to get the username
+    final UserBox userBox = UserBox();
+
     return Material(
-        color: Theme.of(context).colorScheme.background,
-        child: Scaffold(
-          // ignore: always_specify_types
-          floatingActionButton: FloatingActionButton.extended(
-              onPressed: () => <void>{debugPrint('Pressed')},
-              label: const Text('Add entry'),
-              icon: const Icon(Icons.edit)),
-          body: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              physics: const BouncingScrollPhysics(),
+      color: Theme.of(context).colorScheme.background,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () => <void>{Navigator.pushNamed(context, 'add_screen')},
+          label: const Text('Add entry'),
+          icon: const Icon(Icons.edit),
+        ),
+        body: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          physics: const BouncingScrollPhysics(),
+          children: <Widget>[
+            // Display the username
+            FutureBuilder<String?>(
+              future: userBox.getUserName(),
+              builder: (BuildContext context, AsyncSnapshot<String?> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  // While waiting for the data to load, you can display a loading indicator
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  // Handle error here if needed
+                  return Text('Error: ${snapshot.error}');
+                } else if (snapshot.hasData) {
+                  // Display the username if it's available
+                  return GreetingsHeader(
+                    textTheme: textTheme,
+                    name: snapshot.data!,
+                  );
+                } else {
+                  // If no data is available, you can provide a default message
+                  return GreetingsHeader(
+                    textTheme: textTheme,
+                    name: 'Guest', // Default message
+                  );
+                }
+              },
+            ),
+            const SizedBox(height: 16),
+            IconWithLabel(
+              textTheme: textTheme,
+              icon: MdiIcons.creationOutline,
+              label: 'Analytics Summary',
+            ),
+            const SizedBox(height: 16),
+            EmotionTrendsSummary(textTheme: textTheme),
+            const SizedBox(height: 16),
+            IconWithLabel(
+              textTheme: textTheme,
+              icon: MdiIcons.history,
+              label: 'Recent Entries',
+            ),
+            const SizedBox(height: 16),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                // child: Text('Hi John!', style: Theme.of(context).textTheme.headlineMedium,)
-                GreetingsHeader(
-                  textTheme: textTheme,
-                  name: 'Name',
-                ),
-                const SizedBox(height: 16),
-                IconWithLabel(
+                for (int i = 0; i < 10; i++)
+                  EntryCard(
                     textTheme: textTheme,
-                    icon: MdiIcons.creationOutline,
-                    label: 'Analitics Summary'),
-                const SizedBox(height: 16),
-                EmotionTrendsSummary(textTheme: textTheme),
-                const SizedBox(height: 16),
-                IconWithLabel(
-                    textTheme: textTheme,
-                    icon: MdiIcons.history,
-                    label: 'Recent Entries'),
-                const SizedBox(height: 16),
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      for (int i = 0; i < 10; i++)
-                        EntryCard(
-                          textTheme: textTheme,
-                          onTap: () => <void>{debugPrint('Tapped $i')},
-                          time: formatDate(DateTime.now()
-                              .subtract(const Duration(hours: 16))),
-                          title: '$i Sus Day',
-                          body: "This $i's day was very sus",
-                        )
-                    ])
-              ]),
-        ));
+                    onTap: () => <void>{debugPrint('Tapped $i')},
+                    time: formatDate(DateTime.now().subtract(const Duration(hours: 16))),
+                    title: '$i Sus Day',
+                    body: "This $i's day was very sus",
+                  )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
+
 
 String formatDate(DateTime date) {
   final DateTime now = DateTime.now();

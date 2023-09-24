@@ -26,15 +26,11 @@ class _NameScreenState extends State<NameScreen> {
     final userName = await _userBox.getUserName();
     if (userName != null) {
       setState(() {
-        _nameController.text = userName.toString();
+        _nameController.text = userName;
       });
     }
   }
 
-  Future<void> _saveUserName() async {
-    final String name = _nameController.text;
-    await _userBox.saveUserName(name);
-  }
 
   Future<void> _updateUserName() async {
     final String newName = _nameController.text;
@@ -61,14 +57,14 @@ class _NameScreenState extends State<NameScreen> {
             TextField(
               controller: _nameController,
             ),
-            ElevatedButton(
+            const SizedBox(height: 16,),
+            Row(mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+              FilledButton(
               onPressed: _updateUserName, // Use _updateUserName instead of _saveUserName
               child: const Text('Update Name'), // Change the button label
             ),
-            ElevatedButton(
-              onPressed: _saveUserName, // Keep the save button for initial setup
-              child: const Text('Save Name'),
-            ),
+            ],)
           ],
         ),
       ),

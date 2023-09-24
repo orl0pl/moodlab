@@ -10,9 +10,9 @@ class UserBox {
     await box.put('userName', name);
   }
 
-  Future getUserName() async {
+  Future<String> getUserName() async {
 
     final box = await Hive.openBox(_boxName);
-    return box.get('userName');
+    return box.get('userName').toString();
   }
 }

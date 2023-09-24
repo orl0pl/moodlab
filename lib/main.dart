@@ -10,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'config/theme.dart';
 import 'cubit/theme_cubit.dart';
+import 'ui/screens/add_screen.dart';
 import 'ui/screens/name_screen.dart';
 import 'ui/screens/settings_screen.dart';
 import 'ui/screens/skeleton_screen.dart';
@@ -74,7 +75,8 @@ class MyApp extends StatelessWidget {
               'settings': (BuildContext context)=>SettingsScreen(),
               // ignore: prefer_const_constructors
               'skeleton_screen': (BuildContext context)=>SkeletonScreen(),
-              'name_screen': (BuildContext context)=>const NameScreen()
+              'name_screen': (BuildContext context)=>const NameScreen(),
+              'add_screen': (BuildContext context)=>const AddEntryScreen()
             },
             
           );
