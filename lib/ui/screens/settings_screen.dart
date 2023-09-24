@@ -21,11 +21,26 @@ class SettingsScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               physics: const BouncingScrollPhysics(),
               children: <Widget>[
-                Text('Apperace', style: textTheme.titleLarge,),
-                const SizedBox(height: 8,),
-                Text('Theme', style: textTheme.titleSmall,),
-                const SizedBox(height: 4,),
-                const ThemeSelector()
+                const ListTile(
+                    title: Text('Theme'),
+                    subtitle: ThemeSelector(),
+                    leading: Icon(Icons.color_lens)),
+                const Divider(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16, top: 8),
+                  child: Text(
+                    'User',
+                    style: textTheme.titleSmall,
+                  ),
+                ),
+                ListTile(
+                    title: const Text('Name'),
+                    subtitle: const Text('Change name'),
+                    onTap: ()=>{Navigator.pushNamed(context, 'name_screen')},
+                    leading: const Icon(Icons.account_circle)),
+                const SizedBox(
+                  height: 4,
+                ),
               ]),
         ));
   }
@@ -64,7 +79,6 @@ class ThemeSelector extends StatelessWidget {
     return BlocBuilder<ThemeCubit, ThemeModeState>(
       // ignore: always_specify_types
       builder: (BuildContext context, ThemeModeState state) {
-
         // ignore: always_specify_types
         return SegmentedButton(
           segments: <ButtonSegment<String>>[

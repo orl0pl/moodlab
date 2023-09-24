@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dev.feichtinger.flutterproductionboilerplate.flutter_production_boilerplate">
+    package="orl0pl.moodlab">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -48,4 +48,6 @@
             <data android:scheme="https" />
         </intent>
     </queries>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
 </manifest>

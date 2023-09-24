@@ -1,4 +1,4 @@
-package dev.feichtinger.flutterproductionboilerplate.flutter_production_boilerplate
+package orl0pl.moodlab
 
 import io.flutter.embedding.android.FlutterActivity
 

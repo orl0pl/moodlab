@@ -166,7 +166,7 @@ class GreetingsHeader extends StatelessWidget {
         Text('Hi $name!', style: textTheme.headlineLarge),
         
         IconButton.filledTonal(
-            onPressed: () =>{
+            onPressed: () =><Future<Object?>>{
               Navigator.pushNamed(context, 'settings')
                 },
             icon: const Icon(Icons.account_circle_outlined))
