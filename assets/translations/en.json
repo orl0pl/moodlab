@@ -29,12 +29,12 @@
   
   "sliders": {
     "mood": {
-      "question": "How would you rate your overall mood?",
-      "minLabel": "Awful",
+      "question": "How is your mood?",
+      "minLabel": "Teriblle",
       "maxLabel": "Fantastic"
     },
     "energy": {
-      "question": "How much energy do you have right now?",
+      "question": "What is your energy level?",
       "minLabel": "Low",
       "maxLabel": "High"
     },
@@ -44,8 +44,8 @@
       "maxLabel": "Very"
     },
     "productivity": {
-      "question": "How productive have you been recently?",
-      "minLabel": "Not Very Productive",
+      "question": "Are you productive?",
+      "minLabel": "Very Not",
       "maxLabel": "Very Productive"
     },
     "gratefulness": {
@@ -59,13 +59,13 @@
       "maxLabel": "Very Anxious"
     },
     "sleepQuality": {
-      "question": "How would you rate the quality of your recent sleep?",
+      "question": "How was your sleep last night?",
       "minLabel": "Poor",
       "maxLabel": "Excellent"
     },
     "sportActivity": {
       "question": "How physically active have you been recently?",
-      "minLabel": "Not Very Active",
+      "minLabel": "Not Active",
       "maxLabel": "Very Active"
     }
   }

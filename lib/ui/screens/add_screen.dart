@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SliderWithLabel extends StatefulWidget {
-  const SliderWithLabel({
-    super.key,
-    required this.label,
-    required this.value,
-    required this.onChanged,
-    required this.badIcon,
-    required this.badLabel,
-    required this.goodIcon,
-    required this.goodLabel
-  });
+  const SliderWithLabel(
+      {super.key,
+      required this.label,
+      required this.value,
+      required this.onChanged,
+      required this.badIcon,
+      required this.badLabel,
+      required this.goodIcon,
+      required this.goodLabel});
   final String label;
   final double value;
   final ValueChanged<double> onChanged;
@@ -45,7 +44,7 @@ class _SliderWithLabelState extends State<SliderWithLabel> {
           onChanged: widget.onChanged,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal:24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -108,6 +107,9 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context)
+        .textTheme
+        .apply(displayColor: Theme.of(context).colorScheme.onSurface);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Entry'),
@@ -133,40 +135,178 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                   goodIcon: MdiIcons.emoticonHappyOutline,
                   goodLabel: tr('sliders.mood.maxLabel'),
                 ),
+                const SizedBox(
+                  height: 36,
+                ),
+                SliderWithLabel(
+                  label: tr('sliders.energy.question'),
+                  value: energyValue,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      energyValue = newValue;
+                    });
+                  },
+                  badIcon: MdiIcons.brightness3,
+                  badLabel: tr('sliders.energy.minLabel'),
+                  goodIcon: MdiIcons.whiteBalanceSunny,
+                  goodLabel: tr('sliders.energy.maxLabel'),
+                ),
+                const SizedBox(
+                  height: 36,
+                ),
+                SliderWithLabel(
+                  label: tr('sliders.stress.question'),
+                  value: stressValue,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      stressValue = newValue;
+                    });
+                  },
+                  badIcon: MdiIcons.waveform,
+                  badLabel: tr('sliders.stress.maxLabel'),
+                  goodIcon: MdiIcons.wave,
+                  goodLabel: tr('sliders.stress.minLabel'),
+                ),
+                const SizedBox(
+                  height: 36,
+                ),
+                SliderWithLabel(
+                  label: tr('sliders.productivity.question'),
+                  value: productivityValue,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      productivityValue = newValue;
+                    });
+                  },
+                  badIcon: MdiIcons.closeCircleOutline,
+                  badLabel: tr('sliders.productivity.minLabel'),
+                  goodIcon: MdiIcons.checkCircle,
+                  goodLabel: tr('sliders.productivity.maxLabel'),
+                ),
+                const SizedBox(
+                  height: 36,
+                ),
+                SliderWithLabel(
+                  label: tr('sliders.gratefulness.question'),
+                  value: gratefulnessValue,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      gratefulnessValue = newValue;
+                    });
+                  },
+                  badIcon: MdiIcons.cancel,
+                  badLabel: tr('sliders.gratefulness.minLabel'),
+                  goodIcon: MdiIcons.emoticonCool,
+                  goodLabel: tr('sliders.gratefulness.maxLabel'),
+                ),
+                const SizedBox(
+                  height: 36,
+                ),
+                SliderWithLabel(
+                  label: tr('sliders.anxiousness.question'),
+                  value: anxiousnessValue,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      anxiousnessValue = newValue;
+                    });
+                  },
+                  badIcon: MdiIcons.emoticonSad,
+                  badLabel: tr('sliders.anxiousness.maxLabel'),
+                  goodIcon: MdiIcons.emoticonNeutral,
+                  goodLabel: tr('sliders.anxiousness.minLabel'),
+                ),
+                const SizedBox(
+                  height: 36,
+                ),
+                SliderWithLabel(
+                  label: tr('sliders.sleepQuality.question'),
+                  value: sleepQualityValue,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      sleepQualityValue = newValue;
+                    });
+                  },
+                  badIcon: MdiIcons.sleepOff,
+                  badLabel: tr('sliders.sleepQuality.minLabel'),
+                  goodIcon: MdiIcons.sleep,
+                  goodLabel: tr('sliders.sleepQuality.maxLabel'),
+                ),
+                const SizedBox(
+                  height: 36,
+                ),
+                SliderWithLabel(
+                  label: tr('sliders.sportActivity.question'),
+                  value: sportActivityValue,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      sportActivityValue = newValue;
+                    });
+                  },
+                  badIcon: MdiIcons.sofaSingleOutline,
+                  badLabel: tr('sliders.sportActivity.minLabel'),
+                  goodIcon: MdiIcons.runFast,
+                  goodLabel: tr('sliders.sportActivity.maxLabel'),
+                ),
+                const SizedBox(height: 36.0),
               ],
             ),
             // Add similar sliders for other values here
-
-            const SizedBox(height: 20.0),
-
-            const Text('Diary Entry'),
-            TextField(
-              maxLines: 4,
-              onChanged: (String text) {
-                setState(() {
-                  diaryEntry = text;
-                });
-              },
-              decoration: const InputDecoration(
-                hintText: 'Write your thoughts here...',
-                border: OutlineInputBorder(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('How you will name this entry?',
+                      style: textTheme.labelLarge),
+                  const TextField(),
+                ],
               ),
             ),
+            const SizedBox(height: 36.0),
 
-            const SizedBox(height: 20.0),
-
-            ElevatedButton(
-              onPressed: () {
-                // Save the entry with all the values (mood, energy, etc.) and diaryEntry
-                // You can implement the saving logic here
-                // Don't forget to include a timestamp for the entry
-                // After saving, you can navigate back to the previous screen or home screen
-              },
-              child: const Text('Save Entry'),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('What you were doing snice last entry?',
+                      style: textTheme.labelLarge),
+                  const TextField(
+                      decoration: InputDecoration(
+                          label: Text('seperate values with comma'),
+                          floatingLabelBehavior: FloatingLabelBehavior.always)),
+                ],
+              ),
             ),
+            const SizedBox(height: 36.0),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('You can write something below',
+                      style: textTheme.labelLarge),
+                  const SizedBox(height: 16.0),
+                  TextField(
+                    maxLines: null,
+                    onChanged: (String text) {
+                      setState(() {
+                        diaryEntry = text;
+                      });
+                    },
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 36.0),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: ()=><void>{debugPrint('implement!'), Navigator.pop(context)}, tooltip: 'Save', child: const Icon(Icons.done)),
     );
   }
 }

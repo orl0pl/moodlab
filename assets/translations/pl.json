@@ -44,18 +44,18 @@
     },
     "productivity": {
       "question": "Jak produktywny/-na byłeś/-aś ostatnio?",
-      "minLabel": "Mało produktywny/-na",
-      "maxLabel": "Bardzo produktywny/-na"
+      "minLabel": "Mało",
+      "maxLabel": "Bardzo"
     },
     "gratefulness": {
       "question": "Na jakim poziomie jest Twoja wdzięczność?",
-      "minLabel": "Niewdzięczny/-a",
-      "maxLabel": "Bardzo wdzięczny/-a"
+      "minLabel": "Niskim",
+      "maxLabel": "Wysokim"
     },
     "anxiousness": {
       "question": "Czy czujesz się teraz zaniepokojony/-a?",
-      "minLabel": "Spokojny/-a",
-      "maxLabel": "Bardzo zaniepokojony/-a"
+      "minLabel": "Nie",
+      "maxLabel": "Tak"
     },
     "sleepQuality": {
       "question": "Jak oceniasz jakość swojego ostatniego snu?",
@@ -64,8 +64,8 @@
     },
     "sportActivity": {
       "question": "Jak aktywny/-a byłeś/-aś fizycznie ostatnio?",
-      "minLabel": "Mało aktywny/-a",
-      "maxLabel": "Bardzo aktywny/-a"
+      "minLabel": "Mało",
+      "maxLabel": "Bardzo"
     }
   }
 
