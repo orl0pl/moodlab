@@ -29,6 +29,7 @@ void main() async {
   final Directory tmpDir = await getApplicationDocumentsDirectory();//await getTemporaryDirectory();
   debugPrint(tmpDir.path);
   Hive.init(tmpDir.path);
+  Hive.registerAdapter(EntryModelAdapter());
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: tmpDir,
   );

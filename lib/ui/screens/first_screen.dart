@@ -1,13 +1,40 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../boxes/user_box.dart';
+import 'add_screen.dart';
 
-
-
-class FirstScreen extends StatelessWidget {
+class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
+
+  @override
+  _FirstScreenState createState() => _FirstScreenState();
+}
+
+class _FirstScreenState extends State<FirstScreen> {
+  // Define a list to store the retrieved entries.
+  List<EntryModel> entries = <EntryModel>[];
+
+  @override
+  void initState() {
+    super.initState();
+    _openHiveBox();
+  }
+
+  // Open the Hive box and retrieve entries.
+  Future<void> _openHiveBox() async {
+    final Box<EntryModel> box = await Hive.openBox<EntryModel>('entry_box');
+
+    // Retrieve the entries from Hive and store them in the 'entries' list.
+    //entries = box.values.toList();
+    
+    setState(() {entries = box.values.toList();});
+    box.close();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,70 +53,71 @@ class FirstScreen extends StatelessWidget {
           label: const Text('Add entry'),
           icon: const Icon(Icons.edit),
         ),
-        body: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          physics: const BouncingScrollPhysics(),
-          children: <Widget>[
-            // Display the username
-            FutureBuilder<String?>(
-              future: userBox.getUserName(),
-              builder: (BuildContext context, AsyncSnapshot<String?> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  // While waiting for the data to load, you can display a loading indicator
-                  return const CircularProgressIndicator();
-                } else if (snapshot.hasError) {
-                  // Handle error here if needed
-                  return Text('Error: ${snapshot.error}');
-                } else if (snapshot.hasData) {
-                  // Display the username if it's available
-                  return GreetingsHeader(
-                    textTheme: textTheme,
-                    name: snapshot.data!,
-                  );
-                } else {
-                  // If no data is available, you can provide a default message
-                  return GreetingsHeader(
-                    textTheme: textTheme,
-                    name: 'Guest', // Default message
-                  );
-                }
-              },
-            ),
-            const SizedBox(height: 16),
-            IconWithLabel(
-              textTheme: textTheme,
-              icon: MdiIcons.creationOutline,
-              label: tr('analitics_summary'),
-            ),
-            const SizedBox(height: 16),
-            EmotionTrendsSummary(textTheme: textTheme),
-            const SizedBox(height: 16),
-            IconWithLabel(
-              textTheme: textTheme,
-              icon: MdiIcons.history,
-              label: tr('recent_entries'),
-            ),
-            const SizedBox(height: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                for (int i = 0; i < 10; i++)
-                  EntryCard(
-                    textTheme: textTheme,
-                    onTap: () => <void>{debugPrint('Tapped $i')},
-                    time: formatDate(DateTime.now().subtract(const Duration(hours: 16))),
-                    title: '$i Sus Day',
-                    body: "This $i's day was very sus",
-                  )
-              ],
-            )
-          ],
+        body: RefreshIndicator(
+
+          // ignore: always_specify_types
+          onRefresh: ()=>Future.delayed(const Duration(milliseconds: 300), () => _openHiveBox()),
+          child: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            physics: const AlwaysScrollableScrollPhysics(),//BouncingScrollPhysics(),
+            
+            children: <Widget>[
+              // Display the username
+              FutureBuilder<String?>(
+                future: userBox.getUserName(),
+                builder: (BuildContext context, AsyncSnapshot<String?> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    // While waiting for the data to load, you can display a loading indicator
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    // Handle error here if needed
+                    return Text('Error: ${snapshot.error}');
+                  } else if (snapshot.hasData) {
+                    // Display the username if it's available
+                    return GreetingsHeader(
+                      textTheme: textTheme,
+                      name: snapshot.data!,
+                    );
+                  } else {
+                    // If no data is available, you can provide a default message
+                    return GreetingsHeader(
+                      textTheme: textTheme,
+                      name: 'Guest', // Default message
+                    );
+                  }
+                },
+              ),
+              const SizedBox(height: 16),
+              IconWithLabel(
+                textTheme: textTheme,
+                icon: MdiIcons.creationOutline,
+                label: tr('analitics_summary'),
+              ),
+              const SizedBox(height: 16),
+              EmotionTrendsSummary(textTheme: textTheme),
+              const SizedBox(height: 16),
+              IconWithLabel(
+                textTheme: textTheme,
+                icon: MdiIcons.history,
+                label: tr('recent_entries'),
+              ),
+              const SizedBox(height: 16),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: entries.isEmpty
+                    ? <Widget>[const Text("Let's start by adding entry")]
+                    : entries
+                        .map((EntryModel e) =>
+                            EntryCard(textTheme: textTheme, entry: e))
+                        .toList(),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
 
 String formatDate(DateTime date) {
   final DateTime now = DateTime.now();
@@ -112,42 +140,43 @@ String formatDate(DateTime date) {
 }
 
 class EntryCard extends StatelessWidget {
-  const EntryCard(
-      {super.key,
-      required this.textTheme,
-      required this.onTap,
-      required this.time,
-      required this.title,
-      required this.body});
+  const EntryCard({
+    super.key,
+    required this.textTheme,
+    required this.entry,
+  });
 
   final TextTheme textTheme;
-  final GestureTapCallback onTap;
-  final String time, title, body;
+  final EntryModel entry;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: onTap,
+        onTap: () {
+          // Handle tap on the entry if needed.
+          debugPrint('Tapped entry with title: ${entry.title}');
+        },
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  time,
-                  style: textTheme.labelMedium,
-                ),
-                Text(
-                  title,
-                  style: textTheme.titleLarge,
-                ),
-                Text(
-                  body,
-                  style: textTheme.bodyMedium,
-                )
-              ]),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                formatDate(entry.timestamp), // Display the timestamp
+                style: textTheme.labelMedium,
+              ),
+              Text(
+                entry.title,
+                style: textTheme.titleLarge,
+              ),
+              Text(
+                entry.diaryEntry,
+                style: textTheme.bodyMedium,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -179,15 +208,14 @@ class IconWithLabel extends StatelessWidget {
 }
 
 class GreetingsHeader extends StatelessWidget {
-  const GreetingsHeader(
-      {super.key,
-      required this.textTheme,
-      required this.name,
-      });
+  const GreetingsHeader({
+    super.key,
+    required this.textTheme,
+    required this.name,
+  });
 
   final TextTheme textTheme;
   final String name;
-
 
   @override
   Widget build(BuildContext context) {
@@ -195,11 +223,9 @@ class GreetingsHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text('Hi $name!', style: textTheme.headlineLarge),
-        
         IconButton.filledTonal(
-            onPressed: () =><Future<Object?>>{
-              Navigator.pushNamed(context, 'settings')
-                },
+            onPressed: () =>
+                <Future<Object?>>{Navigator.pushNamed(context, 'settings')},
             icon: const Icon(Icons.account_circle_outlined))
       ],
     );
