@@ -7,6 +7,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 import '../../boxes/user_box.dart';
 import 'add_screen.dart';
+import 'entry_screen.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
@@ -31,8 +32,10 @@ class _FirstScreenState extends State<FirstScreen> {
 
     // Retrieve the entries from Hive and store them in the 'entries' list.
     //entries = box.values.toList();
-    
-    setState(() {entries = box.values.toList();});
+
+    setState(() {
+      entries = box.values.toList();
+    });
     box.close();
   }
 
@@ -44,7 +47,6 @@ class _FirstScreenState extends State<FirstScreen> {
 
     // Use the UserBox class to get the username
     final UserBox userBox = UserBox();
-
     return Material(
       color: Theme.of(context).colorScheme.background,
       child: Scaffold(
@@ -54,18 +56,20 @@ class _FirstScreenState extends State<FirstScreen> {
           icon: const Icon(Icons.edit),
         ),
         body: RefreshIndicator(
-
           // ignore: always_specify_types
-          onRefresh: ()=>Future.delayed(const Duration(milliseconds: 300), () => _openHiveBox()),
+          onRefresh: () => Future.delayed(
+              const Duration(milliseconds: 300), () => _openHiveBox()),
           child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            physics: const AlwaysScrollableScrollPhysics(),//BouncingScrollPhysics(),
-            
+            physics:
+                const AlwaysScrollableScrollPhysics(), //BouncingScrollPhysics(),
+
             children: <Widget>[
               // Display the username
               FutureBuilder<String?>(
                 future: userBox.getUserName(),
-                builder: (BuildContext context, AsyncSnapshot<String?> snapshot) {
+                builder:
+                    (BuildContext context, AsyncSnapshot<String?> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     // While waiting for the data to load, you can display a loading indicator
                     return const CircularProgressIndicator();
@@ -157,6 +161,14 @@ class EntryCard extends StatelessWidget {
         onTap: () {
           // Handle tap on the entry if needed.
           debugPrint('Tapped entry with title: ${entry.title}');
+          Navigator.push(
+            context,
+            // ignore: always_specify_types
+            MaterialPageRoute(
+              builder: (BuildContext context) => EntryViewScreen(
+                  entryKey: entry.key as int), // Pass the selected entry's key
+            ),
+          );
         },
         child: Padding(
           padding: const EdgeInsets.all(16),

@@ -84,7 +84,7 @@ class MyApp extends StatelessWidget {
               'skeleton_screen': (BuildContext context)=>SkeletonScreen(),
               'name_screen': (BuildContext context)=>const NameScreen(),
               'add_screen': (BuildContext context)=>const AddEntryScreen(),
-              'language_screen':(BuildContext context) => const LanguageSelectionScreen()
+              'language_screen':(BuildContext context) => const LanguageSelectionScreen(),
             },
             
           );
