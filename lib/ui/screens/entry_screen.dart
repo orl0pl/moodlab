@@ -30,11 +30,16 @@ class _EntryViewScreenState extends State<EntryViewScreen> {
     // ignore: prefer_final_locals
     Box<EntryModel> box =
         await Hive.openBox<EntryModel>('entry_box'); // Open the Hive box
+    
     // ignore: cast_nullable_to_non_nullable
     entry =
         // ignore: cast_nullable_to_non_nullable
-        box.get(widget.entryKey) as EntryModel; // Retrieve the entry by its key
-    box.close(); // Close the Hive box
+        box.get(widget.entryKey) as EntryModel;
+         // Retrieve the entry by its key
+    if(box.isOpen){
+      box.close();
+    }
+     // Close the Hive box
     setState(() {}); // Trigger a rebuild to display the entry
   }
 
