@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 import 'add_screen.dart';
+import 'edit_screen.dart';
 import 'first_screen.dart';
 
 class EntryViewScreen extends StatefulWidget {
@@ -26,7 +27,8 @@ class _EntryViewScreenState extends State<EntryViewScreen> {
   }
 
   Future<void> _getEntry() async {
-    final Box<EntryModel> box =
+    // ignore: prefer_final_locals
+    Box<EntryModel> box =
         await Hive.openBox<EntryModel>('entry_box'); // Open the Hive box
     // ignore: cast_nullable_to_non_nullable
     entry =
@@ -42,15 +44,17 @@ class _EntryViewScreenState extends State<EntryViewScreen> {
       builder: (BuildContext context) {
         void delete() {
           int count = 0;
-          Hive.openBox<EntryModel>('entry_box').then((Box<EntryModel> box) => <void>{
-                  box.get(widget.entryKey)?.delete(),
-                  box.close(),
-                  Navigator.of(context).popUntil((_) => count++ >= 2),
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Entry deleted')),
-                  ),
-                });
+          Hive.openBox<EntryModel>('entry_box')
+              .then((Box<EntryModel> box) => <void>{
+                    box.get(widget.entryKey)?.delete(),
+                    box.close(),
+                    Navigator.of(context).popUntil((_) => count++ >= 2),
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Entry deleted')),
+                    ),
+                  });
         }
+
         return AlertDialog(
           title: const Text('Delete this entry?'),
           content: const Text(
@@ -85,7 +89,22 @@ class _EntryViewScreenState extends State<EntryViewScreen> {
                   <void>{debugPrint('delete'), _deleteDialogBuilder(context)},
               icon: const Icon(Icons.delete_outline)),
           IconButton(
-              onPressed: () => <void>{debugPrint('edit')},
+              onPressed: () => <void>{
+                    debugPrint('edit'),
+                    Navigator.push(
+                      context,
+                      // ignore: always_specify_types
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => EditEntryScreen(
+                            entryKey: entry!.key
+                                as int), // Pass the selected entry's key
+                      ),
+                      // ignore: always_specify_types
+                    ).then((value) => Future.delayed(
+                          const Duration(milliseconds: 300),
+                          () => _getEntry(),
+                        ))
+                  },
               icon: const Icon(Icons.edit)),
         ],
       ),

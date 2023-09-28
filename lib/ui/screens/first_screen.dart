@@ -35,6 +35,7 @@ class _FirstScreenState extends State<FirstScreen> {
 
     setState(() {
       entries = box.values.toList();
+      entries.sort((EntryModel a, EntryModel b) =>  a.timestamp.compareTo(b.timestamp));
     });
     box.close();
   }
@@ -111,6 +112,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 children: entries.isEmpty
                     ? <Widget>[const Text("Let's start by adding entry")]
                     : entries
+                        
                         .map((EntryModel e) =>
                             EntryCard(textTheme: textTheme, entry: e))
                         .toList(),
