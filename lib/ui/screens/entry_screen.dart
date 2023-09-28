@@ -81,6 +81,7 @@ class _EntryViewScreenState extends State<EntryViewScreen> {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
+
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
@@ -126,7 +127,29 @@ class _EntryViewScreenState extends State<EntryViewScreen> {
                     entry!.title,
                     style: textTheme.headlineSmall,
                   ),
-                  const SizedBox(height: 8.0),
+                  const SizedBox(height: 4.0),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(children: <Widget>[
+                      Text('Mood: ${entry!.moodValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      const SizedBox(width: 8,),
+                      Text('Energy: ${entry!.energyValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      const SizedBox(width: 8,),
+                      Text('Stress: ${entry!.stressValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      const SizedBox(width: 8,),
+                      Text('Productivity: ${entry!.productivityValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      const SizedBox(width: 8,),
+                      Text('Gratefulness: ${entry!.gratefulnessValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      const SizedBox(width: 8,),
+                      Text('Anxiousness: ${entry!.anxiousnessValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      const SizedBox(width: 8,),
+                      Text('Sleep quality: ${entry!.sleepQualityValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      const SizedBox(width: 8,),
+                      Text('Sport activity: ${entry!.sportActivityValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                    
+                    ], ),
+                  ),
+                  const SizedBox(height: 4.0),
                   Text(
                     entry!.diaryEntry,
                     style: textTheme.bodyLarge,

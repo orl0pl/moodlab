@@ -35,7 +35,7 @@ class _FirstScreenState extends State<FirstScreen> {
 
     setState(() {
       entries = box.values.toList();
-      entries.sort((EntryModel a, EntryModel b) =>  a.timestamp.compareTo(b.timestamp));
+      entries.sort((EntryModel a, EntryModel b) =>  b.timestamp.compareTo(a.timestamp));
     });
     box.close();
   }
@@ -92,14 +92,14 @@ class _FirstScreenState extends State<FirstScreen> {
                   }
                 },
               ),
-              const SizedBox(height: 16),
-              IconWithLabel(
-                textTheme: textTheme,
-                icon: MdiIcons.creationOutline,
-                label: tr('analitics_summary'),
-              ),
-              const SizedBox(height: 16),
-              EmotionTrendsSummary(textTheme: textTheme),
+              // const SizedBox(height: 16),
+              // IconWithLabel(
+              //   textTheme: textTheme,
+              //   icon: MdiIcons.creationOutline,
+              //   label: tr('analitics_summary'),
+              // ),
+              // const SizedBox(height: 16),
+              //EmotionTrendsSummary(textTheme: textTheme),
               const SizedBox(height: 16),
               IconWithLabel(
                 textTheme: textTheme,
