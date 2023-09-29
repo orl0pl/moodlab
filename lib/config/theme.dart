@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 
-const MaterialColor srcCol = Colors.blue;
+const MaterialColor srcCol = Colors.lightGreen;
 
 final ColorScheme lightColorScheme = ColorScheme.fromSeed(seedColor: srcCol);
 
