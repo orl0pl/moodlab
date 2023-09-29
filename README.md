@@ -1,6 +1,7 @@
 <div  align="center">
   
-  <img width="96" align="center" src="https://fulltummyfund.co.za/wp-content/uploads/2017/01/PlaceholderLogo.png"></img>
+  <img width="96" align="center" src="https://github.com/orl0pl/moodlab/assets/93262125/a9f0e2a0-0ccc-4613-a701-3968a34889d1" alt="moodlab logo"></img>
+
   <h1  align="center">MoodLab</h1>
 </div>
 
@@ -11,6 +12,6 @@
 
 </div>
 <div align="center">
-Example summary
+App for writing and analizing your emotions.
 
 </div>
