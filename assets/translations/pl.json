@@ -7,6 +7,7 @@
   "today": "dzisiaj, {}",
   "yesterday": "wczoraj, {}",
 
+  "greetings": "Cześć {}!",
 
   "analitics_summary": "Podsumowanie Analizy",
   "emotion_trend": "Trend Emocjonalny",
@@ -25,6 +26,50 @@
   "language_screen":{
     "title": "Zmień język"
   },
+
+  "fab": {
+    "add_entry": "Dodaj wpis"
+  },
+
+  "account": {
+    "guest": "Gość",
+    "updated_username": "Zmieniono nazwę na: {}",
+    "user_name": "Nazwa użytkownika"
+  },
+
+  "settings": {
+    "enter_username": "Wpisz nazwę użytkownika",
+    "update_username": "Zapisz nazwę użytkownika",
+    "title": "Ustawienia",
+    "theme": "Motyw",
+    "language": "Język",
+    "user": "Użytkownik"
+  },
+
+  "title": {
+    "question": "Jak nazwiesz ten dzień?"
+  },
+
+  "activities": {
+    "question": "Co dzisiaj robiłeś/aś?"
+  },
+
+  "diaryEntry": {
+    "question": "Możesz napisać cokolwiek poniżej"
+  },
+  
+  "seperatewithcomma": "Odziel wartości przecinkiem",
+
+  "entry": {
+    "delete": {
+      "deleted": "Usunięto wpis",
+      "question": "Usunąć ten wpis?",
+      "confirm": "Usuwanie tego wpisu wymaże go z istnienia na zawsze!"
+    }
+  },
+
+  "cancel": "Anuluj",
+  "delete": "Usuń",
 
   "sliders": {
     "mood": {

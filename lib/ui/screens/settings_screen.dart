@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -16,31 +17,31 @@ class SettingsScreen extends StatelessWidget {
         color: Theme.of(context).colorScheme.background,
         child: Scaffold(
           // ignore: always_specify_types
-          appBar: AppBar(title: const Text('Settings')),
+          appBar: AppBar(title: Text(tr('settings.title'))),
           body: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               physics: const BouncingScrollPhysics(),
               children: <Widget>[
-                const ListTile(
-                    title: Text('Theme'),
-                    subtitle: ThemeSelector(),
-                    leading: Icon(Icons.color_lens)),
+                ListTile(
+                    title: Text(tr('settings.theme')),
+                    subtitle: const ThemeSelector(),
+                    leading: const Icon(Icons.color_lens)),
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.only(left: 16, top: 8),
                   child: Text(
-                    'User',
+                    tr('settings.user'),
                     style: textTheme.titleSmall,
                   ),
                 ),
                 ListTile(
-                    title: const Text('Name'),
-                    subtitle: const Text('Change name'),
+                    title: Text(tr('account.user_name')),
+                    subtitle: Text(tr('settings.update_username')),
                     onTap: ()=><Future<Object?>>{Navigator.pushNamed(context, 'name_screen')},
                     leading: const Icon(Icons.account_circle)),
                 ListTile(
-                    title: const Text('Language'),
-                    subtitle: const Text('Change language'),
+                    title: Text(tr('settings.language')),
+                    subtitle: Text(tr('language_screen.title')),
                     onTap: ()=><Future<Object?>>{Navigator.pushNamed(context, 'language_screen')},
                     leading: const Icon(Icons.language)),
                 const SizedBox(

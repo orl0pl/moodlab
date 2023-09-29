@@ -344,7 +344,7 @@ class _EditEntryScreenState extends State<EditEntryScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('How you will name this entry?',
+                        Text(tr('title.question'),
                             style: textTheme.labelLarge),
                         TextFormField(
                           initialValue: entry!.title,
@@ -366,7 +366,7 @@ class _EditEntryScreenState extends State<EditEntryScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('What you were doing snice last entry?',
+                        Text(tr('activities.question'),
                             style: textTheme.labelLarge),
                         TextFormField(
                             initialValue: entry!.activities,
@@ -377,8 +377,8 @@ class _EditEntryScreenState extends State<EditEntryScreen> {
                                     },
                                   )
                                 },
-                            decoration: const InputDecoration(
-                                label: Text('seperate values with comma'),
+                            decoration: InputDecoration(
+                                label: Text(tr('seperatewithcomma')),
                                 floatingLabelBehavior:
                                     FloatingLabelBehavior.always)),
                       ],
@@ -391,7 +391,7 @@ class _EditEntryScreenState extends State<EditEntryScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('You can write something below',
+                        Text(tr('diaryEntry.question'),
                             style: textTheme.labelLarge),
                         const SizedBox(height: 16.0),
                         TextFormField(

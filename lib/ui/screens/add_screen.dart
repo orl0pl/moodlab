@@ -223,7 +223,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
         .apply(displayColor: Theme.of(context).colorScheme.onSurface);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Entry'),
+        title: Text(tr('fab.add_entry')),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -367,7 +367,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('How you will name this entry?',
+                  Text(tr('title.question'),
                       style: textTheme.labelLarge),
                   TextField(
                     onChanged: (String value) => <void>{
@@ -388,7 +388,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('What you were doing snice last entry?',
+                  Text(tr('activities.question'),
                       style: textTheme.labelLarge),
                   TextField(
                       onChanged: (String value) => <void>{
@@ -398,8 +398,8 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                               },
                             )
                           },
-                      decoration: const InputDecoration(
-                          label: Text('seperate values with comma'),
+                      decoration: InputDecoration(
+                          label: Text(tr('seperatewithcomma')),
                           floatingLabelBehavior: FloatingLabelBehavior.always)),
                 ],
               ),
@@ -411,7 +411,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('You can write something below',
+                  Text(tr('diaryEntry.question'),
                       style: textTheme.labelLarge),
                   const SizedBox(height: 16.0),
                   TextField(

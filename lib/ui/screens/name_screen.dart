@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, always_specify_types, use_build_context_synchronously
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../boxes/user_box.dart';
@@ -37,7 +38,7 @@ class _NameScreenState extends State<NameScreen> {
     await _userBox.saveUserName(newName);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Username updated to $newName'),
+        content: Text(tr('account.updated_username',args:[newName])),
       ),
     );
   }
@@ -46,14 +47,14 @@ class _NameScreenState extends State<NameScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('User Name'),
+        title: Text(tr('account.user_name')),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text('Enter your new name:'),
+            Text(tr('settings.enter_username')),
             TextField(
               controller: _nameController,
             ),
@@ -62,7 +63,7 @@ class _NameScreenState extends State<NameScreen> {
               children: [
               FilledButton(
               onPressed: _updateUserName, // Use _updateUserName instead of _saveUserName
-              child: const Text('Update Name'), // Change the button label
+              child: Text(tr('settings.update_username')), // Change the button label
             ),
             ],)
           ],

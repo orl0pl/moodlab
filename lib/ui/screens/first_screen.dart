@@ -53,7 +53,7 @@ class _FirstScreenState extends State<FirstScreen> {
       child: Scaffold(
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () => <void>{Navigator.pushNamed(context, 'add_screen')},
-          label: const Text('Add entry'),
+          label: Text(tr('fab.add_entry')),
           icon: const Icon(Icons.edit),
         ),
         body: RefreshIndicator(
@@ -77,7 +77,7 @@ class _FirstScreenState extends State<FirstScreen> {
                   } else if (snapshot.hasError) {
                     // Handle error here if needed
                     return Text('Error: ${snapshot.error}');
-                  } else if (snapshot.hasData) {
+                  } else if (snapshot.hasData && snapshot.data != null) {
                     // Display the username if it's available
                     return GreetingsHeader(
                       textTheme: textTheme,
@@ -87,7 +87,7 @@ class _FirstScreenState extends State<FirstScreen> {
                     // If no data is available, you can provide a default message
                     return GreetingsHeader(
                       textTheme: textTheme,
-                      name: 'Guest', // Default message
+                      name: tr('account.guest'), // Default message
                     );
                   }
                 },
@@ -110,7 +110,7 @@ class _FirstScreenState extends State<FirstScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: entries.isEmpty
-                    ? <Widget>[const Text("Let's start by adding entry")]
+                    ? <Widget>[Text(tr('start.add_entry'))]
                     : entries
                         
                         .map((EntryModel e) =>
@@ -236,7 +236,7 @@ class GreetingsHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text('Hi $name!', style: textTheme.headlineLarge),
+        Text(tr('greetings', args: <String>[name]), style: textTheme.headlineLarge),
         IconButton.filledTonal(
             onPressed: () =>
                 <Future<Object?>>{Navigator.pushNamed(context, 'settings')},

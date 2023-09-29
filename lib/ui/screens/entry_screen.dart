@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -55,26 +56,26 @@ class _EntryViewScreenState extends State<EntryViewScreen> {
                     box.close(),
                     Navigator.of(context).popUntil((_) => count++ >= 2),
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Entry deleted')),
+                       SnackBar(content: Text(tr('entry.delete.deleted'))),
                     ),
                   });
         }
 
         return AlertDialog(
-          title: const Text('Delete this entry?'),
-          content: const Text(
-            'Deleting this entry will wipe this entry from existence permanently.',
+          title: Text(tr('entry.delete.question')),
+          content: Text(
+            tr('entry.delete.confirm'),
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Cancel'),
+              child: Text(tr('cancel')),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             FilledButton(
               onPressed: delete,
-              child: const Text('Delete'),
+              child: Text(tr('delete')),
             ),
           ],
         );
@@ -136,21 +137,21 @@ class _EntryViewScreenState extends State<EntryViewScreen> {
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(children: <Widget>[
-                      Text('Mood: ${entry!.moodValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      Text('${tr('mood')}: ${entry!.moodValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
                       const SizedBox(width: 8,),
-                      Text('Energy: ${entry!.energyValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      Text('${tr('energy')}: ${entry!.energyValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
                       const SizedBox(width: 8,),
-                      Text('Stress: ${entry!.stressValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      Text('${tr('stress')}: ${entry!.stressValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
                       const SizedBox(width: 8,),
-                      Text('Productivity: ${entry!.productivityValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      Text('${tr('productivity')}: ${entry!.productivityValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
                       const SizedBox(width: 8,),
-                      Text('Gratefulness: ${entry!.gratefulnessValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      Text('${tr('gratefulness')}: ${entry!.gratefulnessValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
                       const SizedBox(width: 8,),
-                      Text('Anxiousness: ${entry!.anxiousnessValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      Text('${tr('anxiousness')}: ${entry!.anxiousnessValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
                       const SizedBox(width: 8,),
-                      Text('Sleep quality: ${entry!.sleepQualityValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      Text('${tr('sleepQuality')}: ${entry!.sleepQualityValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
                       const SizedBox(width: 8,),
-                      Text('Sport activity: ${entry!.sportActivityValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
+                      Text('${tr('sportActivity')}: ${entry!.sportActivityValue.toStringAsPrecision(1)}', style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.tertiary), ),
                     
                     ], ),
                   ),

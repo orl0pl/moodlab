@@ -26,7 +26,51 @@
   "language_screen":{
     "title": "Change Language"
   },
-  
+
+  "fab": {
+    "add_entry": "Add Entry"
+  },
+
+  "account": {
+    "guest": "Guest",
+    "updated_username": "Updated username to: {}",
+    "user_name": "Username"
+  },
+
+  "settings": {
+    "enter_username": "Enter username",
+    "update_username": "Update username",
+    "title": "Settings",
+    "theme": "Theme",
+    "language": "Language",
+    "user": "User"
+  },
+
+  "title": {
+    "question": "How you will name this day?"
+  },
+
+  "activities": {
+    "question": "What were you doing?"
+  },
+
+  "diaryEntry": {
+    "question": "You can write something below"
+  },
+
+  "seperatewithcomma": "Seperate values with comma",
+
+  "entry": {
+    "delete": {
+      "deleted": "Entry deleted",
+      "question": "Delete this entry?",
+      "confirm": "Deleting this entry will wipe this entry from existence permanently."
+    }
+  },
+
+  "cancel": "Cancel",
+  "delete": "Delete",
+
   "sliders": {
     "mood": {
       "question": "How is your mood?",
