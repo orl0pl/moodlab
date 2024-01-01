@@ -126,7 +126,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                 .substring(2, 8),
                             secondary: Theme.of(context)
                                 .colorScheme
-                                .onBackground
+                                .outline
                                 .value
                                 .toRadixString(16)
                                 .substring(2, 8)))
