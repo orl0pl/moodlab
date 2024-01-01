@@ -112,7 +112,10 @@
       "minLabel": "Mało",
       "maxLabel": "Bardzo"
     }
-  }
+  },
 
+  "start": {
+    "add_entry": "Dodaj wpis aby go tu zobaczyć"
+  }
   
 }
