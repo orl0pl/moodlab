@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,33 +61,37 @@ class MyApp extends StatelessWidget {
       create: (BuildContext context) => ThemeCubit(),
       child: BlocBuilder<ThemeCubit, ThemeModeState>(
         builder: (BuildContext context, ThemeModeState state) {
-          return MaterialApp(
-            /// Localization is not available for the title.
-            title: 'Flutter Production Boilerplate',
-
-            /// Theme stuff
-            theme: lightTheme,
-            darkTheme: darkTheme,
-            themeMode: state.themeMode,
-
-            /// Localization stuff
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            
-            //home: const SkeletonScreen(),
-            initialRoute: 'skeleton_screen',
-            // ignore: prefer_const_literals_to_create_immutables
-            routes: <String, WidgetBuilder>{
-              // ignore: prefer_const_constructors
-              'settings': (BuildContext context)=>SettingsScreen(),
-              // ignore: prefer_const_constructors
-              'skeleton_screen': (BuildContext context)=>SkeletonScreen(),
-              'name_screen': (BuildContext context)=>const NameScreen(),
-              'add_screen': (BuildContext context)=>const AddEntryScreen(),
-              'language_screen':(BuildContext context) => const LanguageSelectionScreen(),
-            },
-            
+          return DynamicColorBuilder(
+            builder: (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {
+              return MaterialApp(
+                /// Localization is not available for the title.
+                title: 'Flutter Production Boilerplate',
+              
+                /// Theme stuff
+                theme: ThemeData.from(colorScheme: lightColorScheme ?? defaultLightColorScheme),
+                darkTheme: ThemeData.from(colorScheme: darkColorScheme ?? defaultDarkColorScheme),
+                themeMode: state.themeMode,
+              
+                /// Localization stuff
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
+                
+                //home: const SkeletonScreen(),
+                initialRoute: 'skeleton_screen',
+                // ignore: prefer_const_literals_to_create_immutables
+                routes: <String, WidgetBuilder>{
+                  // ignore: prefer_const_constructors
+                  'settings': (BuildContext context)=>SettingsScreen(),
+                  // ignore: prefer_const_constructors
+                  'skeleton_screen': (BuildContext context)=>SkeletonScreen(),
+                  'name_screen': (BuildContext context)=>const NameScreen(),
+                  'add_screen': (BuildContext context)=>const AddEntryScreen(),
+                  'language_screen':(BuildContext context) => const LanguageSelectionScreen(),
+                },
+                
+              );
+            }
           );
         },
       ),
