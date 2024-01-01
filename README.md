@@ -12,6 +12,6 @@
 
 </div>
 <div align="center">
-App for writing and analizing your emotions.
+App for writing and analyzing your emotions.
 
 </div>
