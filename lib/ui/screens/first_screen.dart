@@ -1,7 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
-
+import '../../svg/writer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -110,7 +111,9 @@ class _FirstScreenState extends State<FirstScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: entries.isEmpty
-                    ? <Widget>[Text(tr('start.add_entry'))]
+                    ? <Widget>[Text(tr('start.add_entry')),
+                    SvgPicture.string(writerSvg(primary: Theme.of(context).colorScheme.primary, secondary: Theme.of(context).colorScheme.onBackground))
+                    ]
                     : entries
                         
                         .map((EntryModel e) =>
