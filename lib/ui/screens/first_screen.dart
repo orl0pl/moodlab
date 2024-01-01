@@ -1,5 +1,4 @@
 // ignore_for_file: library_private_types_in_public_api
-import '../../svg/writer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,6 +6,7 @@ import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../boxes/user_box.dart';
+import '../../svg/writer.dart';
 import 'add_screen.dart';
 import 'entry_screen.dart';
 
@@ -36,7 +36,8 @@ class _FirstScreenState extends State<FirstScreen> {
 
     setState(() {
       entries = box.values.toList();
-      entries.sort((EntryModel a, EntryModel b) =>  b.timestamp.compareTo(a.timestamp));
+      entries.sort(
+          (EntryModel a, EntryModel b) => b.timestamp.compareTo(a.timestamp));
     });
     box.close();
   }
@@ -111,11 +112,26 @@ class _FirstScreenState extends State<FirstScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: entries.isEmpty
-                    ? <Widget>[Text(tr('start.add_entry')),
-                    SvgPicture.string(writerSvg(primary: Theme.of(context).colorScheme.primary, secondary: Theme.of(context).colorScheme.onBackground))
-                    ]
+                    ? <Widget>[
+                        Text(tr('start.add_entry')),
+                        FilledButton(onPressed: ()=>{Text(tr('start.add_entry'))}, child: Text(Theme.of(context)
+                                .colorScheme
+                                .onBackground.value.toRadixString(16).substring(2, 8))),
+                        SvgPicture.string(writerSvg(
+                            primary: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .value
+                                .toRadixString(16)
+                                .substring(2, 8),
+                            secondary: Theme.of(context)
+                                .colorScheme
+                                .onBackground
+                                .value
+                                .toRadixString(16)
+                                .substring(2, 8)))
+                      ]
                     : entries
-                        
                         .map((EntryModel e) =>
                             EntryCard(textTheme: textTheme, entry: e))
                         .toList(),
@@ -239,7 +255,8 @@ class GreetingsHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text(tr('greetings', args: <String>[name]), style: textTheme.headlineLarge),
+        Text(tr('greetings', args: <String>[name]),
+            style: textTheme.headlineLarge),
         IconButton.filledTonal(
             onPressed: () =>
                 <Future<Object?>>{Navigator.pushNamed(context, 'settings')},
