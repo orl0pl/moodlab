@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, always_specify_types
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -59,7 +59,6 @@ class _FirstScreenState extends State<FirstScreen> {
           icon: const Icon(Icons.edit),
         ),
         body: RefreshIndicator(
-          // ignore: always_specify_types
           onRefresh: () => Future.delayed(
               const Duration(milliseconds: 300), () => _openHiveBox()),
           child: ListView(
@@ -114,7 +113,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 children: entries.isEmpty
                     ? <Widget>[
                         Text(tr('start.add_entry')),
-                        FilledButton(onPressed: ()=>{Text(tr('start.add_entry'))}, child: Text(Theme.of(context)
+                        FilledButton(onPressed: ()=><Text>{Text(tr('start.add_entry'))}, child: Text(Theme.of(context)
                                 .colorScheme
                                 .onBackground.value.toRadixString(16).substring(2, 8))),
                         SvgPicture.string(writerSvg(
@@ -184,7 +183,6 @@ class EntryCard extends StatelessWidget {
           debugPrint('Tapped entry with title: ${entry.title}');
           Navigator.push(
             context,
-            // ignore: always_specify_types
             MaterialPageRoute(
               builder: (BuildContext context) => EntryViewScreen(
                   entryKey: entry.key as int), // Pass the selected entry's key
