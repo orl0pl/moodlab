@@ -42,6 +42,8 @@ dependencies:
       ref: master
   dynamic_color: ^1.6.9
   flutter_svg: ^2.0.9
+  file_picker: ^6.1.1
+  # share_plus:  4.0.4
 
 dev_dependencies:
   flutter_test:

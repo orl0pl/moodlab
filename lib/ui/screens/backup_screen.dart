@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../cubit/theme_cubit.dart';
@@ -8,11 +10,28 @@ import '../../cubit/theme_cubit.dart';
 class BackupScreen extends StatelessWidget {
   const BackupScreen({super.key});
 
+  Future<String> exportData() async {
+    var myBox = await Hive.openBox('myBox');
+    String backupData = myBox.toMap().toString();
+
+    return backupData;
+  }
+
+  Future<void> pickFile() async {
+    final FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if (result != null) {
+      // Handle the picked file (result.files.first)
+      debugPrint(
+          'File picked: ${result.files.first.name} ${result.files.first.size}');
+    } else {
+      // User canceled the picker
+      debugPrint('User canceled file picking');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context)
-        .textTheme
-        .apply(displayColor: Theme.of(context).colorScheme.onSurface);
     return Material(
         color: Theme.of(context).colorScheme.background,
         child: Scaffold(
@@ -24,13 +43,13 @@ class BackupScreen extends StatelessWidget {
               children: <Widget>[
                 ListTile(
                     title: Text(tr('backup_screen.import')),
-                    onTap: ()=><Future<Object?>>{Navigator.pushNamed(context, 'name_screen')},
-                    leading: const Icon(Icons.account_circle)),
+                    subtitle: Text(tr('backup_screen.import_warning')),
+                    onTap: () => <void>{pickFile()},
+                    leading: const Icon(Icons.settings_backup_restore)),
                 ListTile(
                     title: Text(tr('backup_screen.export')),
-                    onTap: ()=><Future<Object?>>{Navigator.pushNamed(context, 'language_screen')},
-                    leading: const Icon(Icons.language)),
-                
+                    onTap: () => <void>{debugPrint('export')},
+                    leading: const Icon(Icons.backup_outlined)),
               ]),
         ));
   }

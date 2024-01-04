@@ -47,7 +47,7 @@ class SettingsScreen extends StatelessWidget {
                 ListTile(
                     title: Text(tr('settings.backup')),
                     onTap: ()=><Future<Object?>>{Navigator.pushNamed(context, 'backup_screen')},
-                    leading: const Icon(Icons.backup_outlined)),
+                    leading: const Icon(Icons.restore)),
                 const SizedBox(
                   height: 4,
                 ),

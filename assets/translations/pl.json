@@ -47,6 +47,12 @@
     "backup": "Kopia zapasowa"
   },
 
+  "backup_screen": {
+    "import": "Importuj kopię zapasową",
+    "export": "Eksportuj kopię zapasową",
+    "import_warning": "Uwaga: Importowanie wymaże istniejący zapis"
+  },
+
   "title": {
     "question": "Jak nazwiesz ten dzień?"
   },

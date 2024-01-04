@@ -47,6 +47,12 @@
     "backup": "Backup"
   },
 
+  "backup_screen": {
+    "import": "Import backup",
+    "export": "Export backup",
+    "import_warning": "Warning: Importing will erase current data"
+  },
+
   "title": {
     "question": "How you will name this day?"
   },
@@ -113,6 +119,10 @@
       "minLabel": "Not Active",
       "maxLabel": "Very Active"
     }
+  },
+
+  "start": {
+    "add_entry": "Add entry to see entries here"
   }
 
 }
