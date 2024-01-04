@@ -11,8 +11,9 @@ class BackupScreen extends StatelessWidget {
   const BackupScreen({super.key});
 
   Future<String> exportData() async {
-    var myBox = await Hive.openBox('myBox');
-    String backupData = myBox.toMap().toString();
+    // ignore: strict_raw_type, always_specify_types
+    final Box myBox = await Hive.openBox('entry_box');
+    final String backupData = myBox.toMap().toString();
 
     return backupData;
   }
@@ -48,7 +49,15 @@ class BackupScreen extends StatelessWidget {
                     leading: const Icon(Icons.settings_backup_restore)),
                 ListTile(
                     title: Text(tr('backup_screen.export')),
-                    onTap: () => <void>{debugPrint('export')},
+                    onTap: () async {
+                      String backupData = await exportData();
+
+    // Share the exported data using the share package
+    Share.share(
+      backupData,
+      subject: 'My App Data Backup',
+    );
+                    },
                     leading: const Icon(Icons.backup_outlined)),
               ]),
         ));
