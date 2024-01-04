@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../cubit/theme_cubit.dart';
 
@@ -50,13 +51,13 @@ class BackupScreen extends StatelessWidget {
                 ListTile(
                     title: Text(tr('backup_screen.export')),
                     onTap: () async {
-                      String backupData = await exportData();
+                      final String backupData = await exportData();
 
-    // Share the exported data using the share package
-    Share.share(
-      backupData,
-      subject: 'My App Data Backup',
-    );
+                      // Share the exported data using the share package
+                      Share.share(
+                        backupData,
+                        subject: 'My App Data Backup',
+                      );
                     },
                     leading: const Icon(Icons.backup_outlined)),
               ]),
