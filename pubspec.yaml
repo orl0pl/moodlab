@@ -36,7 +36,10 @@ dependencies:
   ionicons: ^0.2.2
   material_design_icons_flutter: ^7.0.7296
   intl: ^0.18.1
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: 
+    git:
+      url:  https://github.com/fluttercommunity/flutter_launcher_icons.git
+      ref: master
   dynamic_color: ^1.6.9
   flutter_svg: ^2.0.9
 

@@ -113,9 +113,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 children: entries.isEmpty
                     ? <Widget>[
                         Text(tr('start.add_entry')),
-                        FilledButton(onPressed: ()=><Text>{Text(tr('start.add_entry'))}, child: Text(Theme.of(context)
-                                .colorScheme
-                                .onBackground.value.toRadixString(16).substring(2, 8))),
+                        
                         SvgPicture.string(writerSvg(
                             primary: Theme.of(context)
                                 .colorScheme
@@ -125,7 +123,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                 .substring(2, 8),
                             secondary: Theme.of(context)
                                 .colorScheme
-                                .outline
+                                .tertiary
                                 .value
                                 .toRadixString(16)
                                 .substring(2, 8)))

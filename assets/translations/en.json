@@ -43,7 +43,8 @@
     "title": "Settings",
     "theme": "Theme",
     "language": "Language",
-    "user": "User"
+    "user": "User",
+    "backup": "Backup"
   },
 
   "title": {

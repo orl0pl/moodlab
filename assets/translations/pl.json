@@ -43,7 +43,8 @@
     "title": "Ustawienia",
     "theme": "Motyw",
     "language": "Język",
-    "user": "Użytkownik"
+    "user": "Użytkownik",
+    "backup": "Kopia zapasowa"
   },
 
   "title": {

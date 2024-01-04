@@ -5,8 +5,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 import '../../cubit/theme_cubit.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+class BackupScreen extends StatelessWidget {
+  const BackupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,40 +17,20 @@ class SettingsScreen extends StatelessWidget {
         color: Theme.of(context).colorScheme.background,
         child: Scaffold(
           // ignore: always_specify_types
-          appBar: AppBar(title: Text(tr('settings.title'))),
+          appBar: AppBar(title: Text(tr('settings.backup'))),
           body: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               physics: const BouncingScrollPhysics(),
               children: <Widget>[
                 ListTile(
-                    title: Text(tr('settings.theme')),
-                    subtitle: const ThemeSelector(),
-                    leading: const Icon(Icons.color_lens)),
-                const Divider(),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16, top: 8),
-                  child: Text(
-                    tr('settings.user'),
-                    style: textTheme.titleSmall,
-                  ),
-                ),
-                ListTile(
-                    title: Text(tr('account.user_name')),
-                    subtitle: Text(tr('settings.update_username')),
+                    title: Text(tr('backup_screen.import')),
                     onTap: ()=><Future<Object?>>{Navigator.pushNamed(context, 'name_screen')},
                     leading: const Icon(Icons.account_circle)),
                 ListTile(
-                    title: Text(tr('settings.language')),
-                    subtitle: Text(tr('language_screen.title')),
+                    title: Text(tr('backup_screen.export')),
                     onTap: ()=><Future<Object?>>{Navigator.pushNamed(context, 'language_screen')},
                     leading: const Icon(Icons.language)),
-                ListTile(
-                    title: Text(tr('settings.backup')),
-                    onTap: ()=><Future<Object?>>{Navigator.pushNamed(context, 'backup_screen')},
-                    leading: const Icon(Icons.backup_outlined)),
-                const SizedBox(
-                  height: 4,
-                ),
+                
               ]),
         ));
   }

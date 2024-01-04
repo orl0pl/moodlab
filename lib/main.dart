@@ -13,6 +13,7 @@ import 'config/theme.dart';
 import 'cubit/theme_cubit.dart';
 import 'managers/language_manager.dart';
 import 'ui/screens/add_screen.dart';
+import 'ui/screens/backup_screen.dart';
 import 'ui/screens/language_screen.dart';
 import 'ui/screens/name_screen.dart';
 import 'ui/screens/settings_screen.dart';
@@ -88,6 +89,7 @@ class MyApp extends StatelessWidget {
                   'name_screen': (BuildContext context)=>const NameScreen(),
                   'add_screen': (BuildContext context)=>const AddEntryScreen(),
                   'language_screen':(BuildContext context) => const LanguageSelectionScreen(),
+                  'backup_screen':(BuildContext context) => const BackupScreen(),
                 },
                 
               );
