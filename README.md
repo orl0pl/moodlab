@@ -15,3 +15,14 @@
 App for writing and analyzing your emotions.
 
 </div>
+
+## Features:
+
+TODO
+
+## Development:
+
+TODO
+
+
+> Illustrations are provided thanks to designs.ai
