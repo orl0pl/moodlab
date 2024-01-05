@@ -94,7 +94,7 @@ class _FirstScreenState extends State<FirstScreen> {
                       dismissDirection: DismissDirection.none,
                       duration: const Duration(days: 365),
                       behavior: SnackBarBehavior.floating,
-                      margin: EdgeInsets.only(bottom: 96, left: 24, right: 24),
+                      margin: const EdgeInsets.only(bottom: 96, left: 24, right: 24),
                       action: SnackBarAction(label: tr('settings.enter_username'), onPressed: () => Navigator.pushNamed(context, 'name_screen'),),
                       
                     );
