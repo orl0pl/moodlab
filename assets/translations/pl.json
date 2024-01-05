@@ -123,6 +123,10 @@
 
   "start": {
     "add_entry": "Dodaj wpis aby go tu zobaczyć"
+  },
+
+  "error": {
+    "no_username": "Brak nazwy użytkownika"
   }
   
 }

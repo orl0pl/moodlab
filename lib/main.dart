@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
             builder: (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {
               return MaterialApp(
                 /// Localization is not available for the title.
-                title: 'Flutter Production Boilerplate',
+                title: 'MoodLab',
               
                 /// Theme stuff
                 theme: ThemeData.from(colorScheme: lightColorScheme ?? defaultLightColorScheme),

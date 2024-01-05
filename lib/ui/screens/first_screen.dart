@@ -78,13 +78,27 @@ class _FirstScreenState extends State<FirstScreen> {
                   } else if (snapshot.hasError) {
                     // Handle error here if needed
                     return Text('Error: ${snapshot.error}');
-                  } else if (snapshot.hasData && snapshot.data != null) {
+                  } else if (snapshot.hasData &&
+                      snapshot.data != null &&
+                      snapshot.data != 'null') {
+                    
+
                     // Display the username if it's available
                     return GreetingsHeader(
                       textTheme: textTheme,
                       name: snapshot.data!,
                     );
                   } else {
+                    final SnackBar snackBar = SnackBar(
+                      content: Text(tr('error.no_username')),
+                      dismissDirection: DismissDirection.none,
+                      duration: const Duration(days: 365),
+                      behavior: SnackBarBehavior.floating,
+                      margin: EdgeInsets.only(bottom: 96, left: 24, right: 24),
+                      action: SnackBarAction(label: tr('settings.enter_username'), onPressed: () => Navigator.pushNamed(context, 'name_screen'),),
+                      
+                    );
+                    Future.delayed(const Duration(seconds: 1), () {ScaffoldMessenger.of(context).showSnackBar(snackBar);});
                     // If no data is available, you can provide a default message
                     return GreetingsHeader(
                       textTheme: textTheme,
@@ -113,7 +127,6 @@ class _FirstScreenState extends State<FirstScreen> {
                 children: entries.isEmpty
                     ? <Widget>[
                         Text(tr('start.add_entry')),
-                        
                         SvgPicture.string(writerSvg(
                             primary: Theme.of(context)
                                 .colorScheme

@@ -123,6 +123,10 @@
 
   "start": {
     "add_entry": "Add entry to see entries here"
+  },
+
+  "error": {
+    "no_username": "There is no username"
   }
 
 }
