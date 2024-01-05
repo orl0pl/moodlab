@@ -1,31 +1,45 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../cubit/theme_cubit.dart';
+import 'add_screen.dart';
 
 class BackupScreen extends StatelessWidget {
   const BackupScreen({super.key});
 
-  Future<String> exportData() async {
-    // ignore: strict_raw_type, always_specify_types
-    final Box myBox = await Hive.openBox('entry_box');
-    final String backupData = myBox.toMap().toString();
+  // Future<String> exportData() async {
+  //   // ignore: strict_raw_type, always_specify_types
 
-    return backupData;
-  }
+  //   final String backupData = myBox.values.toList().toString();
+  //   myBox.close();
+
+  //   return backupData;
+  // }
 
   Future<void> pickFile() async {
     final FilePickerResult? result = await FilePicker.platform.pickFiles();
 
-    if (result != null) {
+    final Box<EntryModel> box = await Hive.openBox('entry_box');
+    final String? boxPath = box.path;
+    await box.close();
+
+    if (result != null && boxPath != null && !box.isOpen) {
       // Handle the picked file (result.files.first)
       debugPrint(
           'File picked: ${result.files.first.name} ${result.files.first.size}');
+
+      final String backupPath = result.files.first.path!;
+
+      try {
+        File(backupPath).copy(boxPath);
+      } finally {
+        final Box<EntryModel> box = await Hive.openBox('entry_box');
+        box.close();
+      }
     } else {
       // User canceled the picker
       debugPrint('User canceled file picking');
@@ -51,73 +65,19 @@ class BackupScreen extends StatelessWidget {
                 ListTile(
                     title: Text(tr('backup_screen.export')),
                     onTap: () async {
-                      final String backupData = await exportData();
+                      final Box<EntryModel> myBox =
+                          await Hive.openBox('entry_box');
 
                       // Share the exported data using the share package
-                      Share.share(
-                        backupData,
-                        subject: 'My App Data Backup',
-                      );
+                      if (myBox.path != null) {
+                        Share.shareXFiles(
+                          <XFile>[XFile(myBox.path ?? '')],
+                          subject: 'My App Data Backup',
+                        );
+                      }
                     },
                     leading: const Icon(Icons.backup_outlined)),
               ]),
         ));
-  }
-}
-
-ThemeMode stringToThemeMode(String string) {
-  debugPrint(string);
-  if (string == 'system') {
-    return ThemeMode.system;
-  } else if (string == 'dark') {
-    return ThemeMode.dark;
-  } else if (string == 'light') {
-    return ThemeMode.light;
-  }
-  return ThemeMode.system;
-}
-
-String themeModeToString(ThemeMode themeMode) {
-  switch (themeMode) {
-    case ThemeMode.system:
-      return 'system';
-    case ThemeMode.dark:
-      return 'dark';
-    case ThemeMode.light:
-      return 'light'; // Default to system if it's not one of the known modes.
-  }
-}
-
-class ThemeSelector extends StatelessWidget {
-  const ThemeSelector({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, ThemeModeState>(
-      // ignore: always_specify_types
-      builder: (BuildContext context, ThemeModeState state) {
-        // ignore: always_specify_types
-        return SegmentedButton(
-          segments: <ButtonSegment<String>>[
-            // ignore: always_specify_types
-            ButtonSegment(value: 'system', icon: Icon(MdiIcons.brightnessAuto)),
-            // ignore: always_specify_types
-            ButtonSegment(value: 'light', icon: Icon(MdiIcons.brightness6)),
-            // ignore: always_specify_types
-            ButtonSegment(value: 'dark', icon: Icon(MdiIcons.brightness4)),
-            // ignore: always_specify_types
-            ButtonSegment(value: 'auto', icon: Icon(MdiIcons.themeLightDark)),
-          ],
-          selected: <String>{
-            themeModeToString(state.themeMode ?? ThemeMode.system)
-          },
-          onSelectionChanged: (Set<Object?> p0) =>
-              BlocProvider.of<ThemeCubit>(context).getTheme(ThemeModeState(
-                  themeMode: stringToThemeMode(p0.first.toString()))),
-        );
-      },
-    );
   }
 }
