@@ -32,9 +32,12 @@ class _SecondScreenState extends State<SecondScreen> {
     // Retrieve the entries from Hive and store them in the 'entries' list.
     //entries = box.values.toList();
 
-    setState(() {
-      entries = box.values.toList();
-    });
+    if (mounted) {
+      setState(() {
+        entries = box.values.toList();
+      });
+    }
+    debugPrint(entries.map((e) => e.moodValue.toString()).toString());
     box.close();
   }
 
@@ -45,37 +48,43 @@ class _SecondScreenState extends State<SecondScreen> {
       child: Scaffold(
         body: RefreshIndicator(
           onRefresh: () => Future<void>.delayed(
-                const Duration(milliseconds: 300), () => _openHiveBox()),
+              const Duration(milliseconds: 300), () => _openHiveBox()),
           child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              physics: const BouncingScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(),
               children: <Widget>[
-                SfCartesianChart(
-                  title: ChartTitle(text: tr('analytics.metrics.fixed_graph')),
-                  plotAreaBorderWidth: 0,
-                
-                  primaryYAxis: const NumericAxis(
-                      minimum: 1,
-                      maximum: 5,
-                      interval: 1,
-                      axisLine: AxisLine(width: 0),
-                      majorTickLines: MajorTickLines(size: 0)),
-                  primaryXAxis: DateTimeAxis(
-                    intervalType: DateTimeIntervalType.days,
-                    dateFormat: DateFormat.Md(),
-                    majorGridLines: const MajorGridLines(width: 0),
-                  ),
-                  series: <CartesianSeries<dynamic, dynamic>>[
-                    LineSeries<EntryModel, DateTime>(
-                      animationDuration: 0,
-                      xValueMapper: (EntryModel val, _) => val.timestamp,
-                      yValueMapper: (EntryModel val, _) => val.moodValue,
-                      
-                      dataSource: entries,
-                    )
-                  ],
+                const SizedBox(
+                  height: 100,
                 ),
-                
+                Container(
+                  height: 300,
+                  child: SfCartesianChart(
+                    title: ChartTitle(text: tr('analytics.metrics.fixed_graph')),
+                    plotAreaBorderWidth: 0,
+                    palette: [
+                      Theme.of(context).colorScheme.primary,
+                      Theme.of(context).colorScheme.secondary
+                    ],
+                    primaryYAxis: const NumericAxis(
+                        // minimum: 1,
+                        // maximum: 5,
+                        interval: 1,
+                        majorTickLines: MajorTickLines(size: 0)),
+                    primaryXAxis: const DateTimeAxis(
+                      // intervalType: DateTimeIntervalType.days,
+                      // dateFormat: DateFormat.yMd(),
+                      // majorGridLines: const MajorGridLines(width: 0),
+                    ),
+                    series: <CartesianSeries<dynamic, dynamic>>[
+                      LineSeries<EntryModel, DateTime>(
+                        animationDuration: 300,
+                        xValueMapper: (EntryModel val, _) => val.timestamp,
+                        yValueMapper: (EntryModel val, _) => val.moodValue,
+                        dataSource: entries,
+                      )
+                    ],
+                  ),
+                ),
               ]),
         ),
       ),
